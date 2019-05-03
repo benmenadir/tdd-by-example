@@ -11,29 +11,25 @@ class MoneyTest {
 
     @Test
     void testMultiplicationEuro(){
-        Euro five = new Euro(5);
-        Euro product = five.times(2);
-        assertEquals(new Euro(10), product);
-        product = five.times(3);
-        assertEquals(new Euro (15), product);
+        Money five = Money.euro(5);
+        assertEquals(Money.euro(10), five.times(2));
+        assertEquals(Money.euro (15), five.times(3));
     }
     @Test
     void testEqualityEuro(){
-        assertEquals(new Euro(5), new Euro(5));
-        assertNotEquals(new Euro(5), new Euro(8));
-        assertNotEquals(new Euro(5), new Franc(5));
+        assertEquals(Money.euro(5), Money.euro(5));
+        assertNotEquals(Money.euro(5), Money.euro(8));
+        assertNotEquals(Money.euro(5), Money.franc(5));
     }
     @Test
     void testMultiplicationFranc(){
-        Franc five = new Franc(5);
-        Franc product = five.times(2);
-        assertEquals(new Franc(10), product);
-        product = five.times(3);
-        assertEquals(new Franc (15), product);
+        Money five = Money.franc(5);
+        assertEquals(Money.franc(10), five.times(2));
+        assertEquals(Money.franc(15), five.times(3));
     }
     @Test
     void testEqualityFranc(){
-        assertEquals(new Franc(5), new Franc(5));
-        assertNotEquals(new Franc(5), new Franc(8));
+        assertEquals(Money.franc(5), Money.franc(5));
+        assertNotEquals(Money.franc(5), Money.franc(8));
     }
 }

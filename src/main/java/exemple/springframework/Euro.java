@@ -7,7 +7,7 @@ public class Euro extends Money{
         super(amount);
     }
 
-    Euro times(int multiplier){
+    Money times(int multiplier){
        return new Euro( amount * multiplier ) ;
     }
 
