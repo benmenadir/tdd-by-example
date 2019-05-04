@@ -2,16 +2,18 @@ package exemple.springframework;
 
 public abstract class Money {
     protected int amount;
+    protected String currency;
 
-    public Money (int amount) {
+    public Money (int amount, String currency) {
         this.amount=amount;
+        this.currency = currency;
     }
 
     static Money franc (int amount) {
-        return new Franc(amount);
+        return new Franc(amount, "CHF");
     }
     static Money euro (int amount) {
-        return new Euro(amount);
+        return new Euro(amount ,"EURO");
     }
     abstract Money times(int multiplier);
 
@@ -21,4 +23,7 @@ public abstract class Money {
                 && this.getClass().equals(object.getClass());
     }
 
+    protected String currency ( ) {
+        return currency;
+    }
 }
