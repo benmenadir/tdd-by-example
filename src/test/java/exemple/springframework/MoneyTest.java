@@ -38,6 +38,7 @@ class MoneyTest {
         assertEquals("CHF", Money.franc(1).currency());
 
     }
+
     @Test
     void testSimpleAddition(){
         Money five = Money.euro(5);
@@ -47,4 +48,26 @@ class MoneyTest {
         assertEquals(Money.euro(10), reduced);
     }
 
+    @Test
+    void testPlusReturnSum(){
+        Money five = Money.euro(5);
+        Expression result = five.plus(five);
+        Sum sum = (Sum) result;
+
+        assertEquals(five,sum.augmend);
+        assertEquals(five,sum.addmend);
+    }
+    @Test
+    void testReduceSum(){
+    Expression sum = new Sum(Money.euro(3), Money.euro(4));
+    Bank bank = new Bank();
+    Money result = bank.reduce(sum,"EURO");
+    assertEquals(Money.euro(7),result);
+    }
+    @Test
+    void testReduceMoney(){
+        Bank bank= new Bank();
+        Money result = bank.reduce(Money.euro(1), "EURO");
+        assertEquals(Money.euro(1), result);
+    }
 }
