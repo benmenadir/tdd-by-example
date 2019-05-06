@@ -93,4 +93,26 @@ class MoneyTest {
         Money result = bank.reduce(fiveBucks.plus(tenFrancs),"EURO");
         assertEquals(Money.euro(10),result);
     }
+    @Test
+    void testSumPlusMoney(){
+        Expression fiveBucks = Money.euro(5);
+        Expression  tenFrancs = Money.franc(10);
+
+        Bank bank = new Bank();
+        bank.addRate("CHF", "EURO", 2);
+        Expression sum = new Sum(fiveBucks,tenFrancs).plus(fiveBucks);
+        Money result = bank.reduce(sum,"EURO");
+        assertEquals(Money.euro(15),result);
+    }
+
+    @Test
+    void testSumTimes(){
+        Expression fiveBucks = Money.euro(5);
+        Expression  tenFrancs = Money.franc(10);
+        Bank bank = new Bank();
+        bank.addRate("CHF", "EURO", 2);
+        Expression sum = new Sum(fiveBucks,tenFrancs).times(2);
+        Money result = bank.reduce(sum,"EURO");
+        assertEquals(Money.euro(20),result);
+    }
 }
