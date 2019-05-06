@@ -2,9 +2,9 @@ package exemple.springframework;
 
 import java.util.HashMap;
 
-public class Bank {
+class Bank {
 
-    private HashMap<Pair, Integer> rateMap = new HashMap<>();
+    private final HashMap<Pair, Integer> rateMap = new HashMap<>();
 
     Money reduce (Expression source, String toCurrency) {
        return source.reduce(this, toCurrency);
@@ -14,7 +14,7 @@ public class Bank {
         rateMap.put(new Pair(from, to), rate);
     }
 
-    public int rate (String from, String to) {
+    int rate (String from, String to) {
         if(from.equals(to)) return 1;
         return rateMap.get(new Pair(from, to));
     }

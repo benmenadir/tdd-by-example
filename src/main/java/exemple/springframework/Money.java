@@ -1,10 +1,10 @@
 package exemple.springframework;
 
 public class Money implements Expression{
-    protected int amount;
-    protected String currency;
+    final int amount;
+    private final String currency;
 
-    public Money (int amount, String currency) {
+    Money (int amount, String currency) {
         this.amount=amount;
         this.currency = currency;
     }
@@ -28,7 +28,7 @@ public class Money implements Expression{
                 && this.currency == money.currency;
     }
 
-    protected String currency ( ) {
+    String currency ( ) {
         return currency;
     }
 
