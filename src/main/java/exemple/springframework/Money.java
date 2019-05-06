@@ -1,6 +1,6 @@
 package exemple.springframework;
 
-public abstract class Money {
+public class Money implements Expression{
     protected int amount;
     protected String currency;
 
@@ -10,20 +10,36 @@ public abstract class Money {
     }
 
     static Money franc (int amount) {
-        return new Franc(amount, "CHF");
+        return new Money(amount, "CHF");
     }
     static Money euro (int amount) {
-        return new Euro(amount ,"EURO");
+        return new Money(amount ,"EURO");
     }
-    abstract Money times(int multiplier);
+
+    Money times (int multiplier) {
+        return new Money( amount * multiplier, this.currency) ;
+    }
 
     public boolean equals(Object object){
         Money money = (Money) object;
         return amount == money.amount
-                && this.getClass().equals(object.getClass());
+                && this.currency == money.currency;
     }
 
     protected String currency ( ) {
         return currency;
+    }
+
+    @Override
+    public String toString ( ) {
+        return "Money{" +
+                "amount=" + amount +
+                ", currency='" + currency + '\'' +
+                '}';
+    }
+
+    public Expression plus (Money addend) {
+
+        return new Money(this.amount + addend.amount, this.currency);
     }
 }
